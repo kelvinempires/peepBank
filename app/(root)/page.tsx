@@ -1,100 +1,177 @@
-import HeaderBox from "@/components/HeaderBox";
-// import RecentTransactions from '@/components/RecentTransactions';
-import RightSidebar from '@/components/RightSidebar';
-import TotalBalanceBox from '@/components/TotalBalanceBox';
-import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
-import { getLoggedInUser } from '@/lib/actions/user.actions';
-
-const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
-  const currentPage = Number(page as string) || 1;
-  const loggedIn = await getLoggedInUser();
-  const accounts = await getAccounts({ userId: loggedIn});
-  // const accounts = await getAccounts({ userId: loggedIn.$id });
-
-
-
-  if(!accounts) return;
-
-  const accountsData = accounts?.data;
-  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
-
-  const account = await getAccount({ appwriteItemId })
-
-  return (
-<section className="home">
-  <div className="home-content">
-    <header className="home-header">
-      <HeaderBox
-       type="greeting"
-      title="Welcome"
-       user={loggedIn?.firstName || 'Guest'}
-       subtext="Access and manage your account and transactions efficiently."
-    />
-
-     <TotalBalanceBox
-            accounts={accountsData}
-            totalBanks={accounts?.totalBanks}
-            totalCurrentBalance={accounts?.totalCurrentBalance}
-         />
-       </header>
-
-        {/* <RecentTransactions
-          accounts={accountsData}
-          transactions={account?.transactions}
-          appwriteItemId={appwriteItemId}
-          page={currentPage}
-        /> */}
-      </div>
-
-      <RightSidebar
-        user={loggedIn}
-        transactions={account?.transactions}
-        banks={accountsData?.slice(0, 2)}
-      />
-    </section>
-  )
-}
-
-export default Home
 // import HeaderBox from "@/components/HeaderBox";
-// import RightSidebar from "@/components/RightSidebar";
-// import TotalBalanceBox from "@/components/TotalBalanceBox";
-// import { getLoggedInUser } from "@/lib/actions/user.actions";
-// import React from "react";
+// import RecentTransactions from '@/components/RecentTransactions';
+// import RightSidebar from '@/components/RightSidebar';
+// import TotalBalanceBox from '@/components/TotalBalanceBox';
+// import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
+// import { getLoggedInUser } from '@/lib/actions/user.actions';
 
-// const Home =  async() => {
+// const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+//   const currentPage = Number(page as string) || 1;
 //   const loggedIn = await getLoggedInUser();
+//   const accounts = await getAccounts({ userId: loggedIn.$id });
+
+
+
+//   if(!accounts) return;
+
+//   const accountsData = accounts?.data;
+//   const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+
+//   const account = await getAccount({ appwriteItemId })
+
+//   console.log({
+//     accountsData,
+//     account
+//   })
+
 //   return (
-//     <section className="home">
-//       <div className="home-content">
-//         <header className="home-header">
-//           <HeaderBox
-//             type="greeting"
-//             title="Welcome"
-//             user={loggedIn?.firstName || "Guest"}
-//             subtext="Access and manage your account and transactions efficiently."
-//           />
-//           <TotalBalanceBox
-//             accounts={[]}
-//             totalBanks={1}
-//             totalCurrentBalance={1250.35}
-//           />
-//           {/* <TotalBalanceBox
+// <section className="home">
+//   <div className="home-content">
+//     <header className="home-header">
+//       <HeaderBox
+//        type="greeting"
+//       title="Welcome"
+//        user={loggedIn?.firstName || 'Guest'}
+//        subtext="Access and manage your account and transactions efficiently."
+//     />
+
+//      <TotalBalanceBox
 //             accounts={accountsData}
 //             totalBanks={accounts?.totalBanks}
 //             totalCurrentBalance={accounts?.totalCurrentBalance}
 //          />
-//        </header> */}
-//         </header>
-//         {/* <RecentTransactions/> */}
+//        </header>
+
+//         <RecentTransactions
+//           accounts={accountsData}
+//           transactions={account?.transactions}
+//           appwriteItemId={appwriteItemId}
+//           page={currentPage}
+//         />
 //       </div>
+
 //       <RightSidebar
 //         user={loggedIn}
-//         transactions={[]}
-//         banks={[{ currentBalance: 123.50 },{currentBalance: 250.40}]}
+//         transactions={account?.transactions}
+//         banks={accountsData?.slice(0, 2)}
 //       />
 //     </section>
-//   );
-// };
+//   )
+// }
 
-// export default Home;
+// export default Home
+// // import HeaderBox from "@/components/HeaderBox";
+// // import RightSidebar from "@/components/RightSidebar";
+// // import TotalBalanceBox from "@/components/TotalBalanceBox";
+// // import { getLoggedInUser } from "@/lib/actions/user.actions";
+// // import React from "react";
+
+// // const Home =  async() => {
+// //   const loggedIn = await getLoggedInUser();
+// //   return (
+// //     <section className="home">
+// //       <div className="home-content">
+// //         <header className="home-header">
+// //           <HeaderBox
+// //             type="greeting"
+// //             title="Welcome"
+// //             user={loggedIn?.firstName || "Guest"}
+// //             subtext="Access and manage your account and transactions efficiently."
+// //           />
+// //           <TotalBalanceBox
+// //             accounts={[]}
+// //             totalBanks={1}
+// //             totalCurrentBalance={1250.35}
+// //           />
+// //           {/* <TotalBalanceBox
+// //             accounts={accountsData}
+// //             totalBanks={accounts?.totalBanks}
+// //             totalCurrentBalance={accounts?.totalCurrentBalance}
+// //          />
+// //        </header> */}
+// //         </header>
+// //         {/* <RecentTransactions/> */}
+// //       </div>
+// //       <RightSidebar
+// //         user={loggedIn}
+// //         transactions={[]}
+// //         banks={[{ currentBalance: 123.50 },{currentBalance: 250.40}]}
+// //       />
+// //     </section>
+// //   );
+// // };
+
+// // export default Home;
+import HeaderBox from "@/components/HeaderBox";
+import RecentTransactions from "@/components/RecentTransactions";
+import RightSidebar from "@/components/RightSidebar";
+import TotalBalanceBox from "@/components/TotalBalanceBox";
+import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  try {
+    const currentPage = Number(page as string) || 1;
+    const loggedIn = await getLoggedInUser();
+
+    if (!loggedIn || !loggedIn.$id) {
+      console.error("User not logged in or user ID is missing.");
+      // Handle the situation, e.g., redirect to login page or show an error message
+      return null;
+    }
+
+    const accounts = await getAccounts({ userId: loggedIn.$id });
+
+    if (!accounts) {
+      console.error("Failed to fetch accounts.");
+      return null;
+    }
+
+    const accountsData = accounts?.data;
+    const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+
+    const account = await getAccount({ appwriteItemId });
+
+    console.log({
+      accountsData,
+      account,
+    });
+
+    return (
+      <section className="home">
+        <div className="home-content">
+          <header className="home-header">
+            <HeaderBox
+              type="greeting"
+              title="Welcome"
+              user={loggedIn?.firstName || "Guest"}
+              subtext="Access and manage your account and transactions efficiently."
+            />
+            <TotalBalanceBox
+              accounts={accountsData}
+              totalBanks={accounts?.totalBanks}
+              totalCurrentBalance={accounts?.totalCurrentBalance}
+            />
+          </header>
+          <RecentTransactions
+            accounts={accountsData}
+            transactions={account?.transactions}
+            appwriteItemId={appwriteItemId}
+            page={currentPage}
+          />
+        </div>
+        <RightSidebar
+          user={loggedIn}
+          transactions={account?.transactions}
+          banks={accountsData?.slice(0, 2)}
+        />
+      </section>
+    );
+  } catch (error) {
+    console.error("An error occurred:", error);
+    // Handle the error appropriately
+    return null;
+  }
+};
+
+export default Home;
