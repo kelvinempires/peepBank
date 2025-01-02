@@ -38,12 +38,3 @@ const MyBanks = async () => {
 }
 
 export default MyBanks
-// import React from 'react'
-
-// const MyBank = () => {
-//   return (
-//     <div>MyBank</div>
-//   )
-// }
-
-// export default MyBank

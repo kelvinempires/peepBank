@@ -211,7 +211,7 @@ declare interface TotalBalanceBoxProps {
 
 declare interface FooterProps {
   user: User;
-  type?: 'mobile' | 'desktop'
+  type?: "mobile" | "desktop";
 }
 
 declare interface RightSidebarProps {
@@ -277,7 +277,7 @@ declare interface CreateFundingSourceOptions {
   customerId: string; // Dwolla Customer ID
   fundingSourceName: string; // Dwolla Funding Source Name
   plaidToken: string; // Plaid Account Processor Token
-  _links: object; // Dwolla On Demand Authorization Link
+  _links: object; // Dwolla On Demand Autpeepbankpbankation Link
 }
 
 declare interface CreateTransactionProps {

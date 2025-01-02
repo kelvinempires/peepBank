@@ -29,10 +29,3 @@ const Transfer = async () => {
 }
 
 export default Transfer
-// import React from 'react'
-
-// const Transfer = () => {
-//   return <div>Transfer</div>;
-// }
-
-// export default Transfer;

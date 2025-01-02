@@ -22,7 +22,7 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { getLoggedInUser, signIn, signUp, } from "@/lib/actions/user.actions";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -90,10 +90,10 @@ const AuthForm = ({ type }: { type: string }) => {
             src="/icons/logo.svg"
             width={34}
             height={34}
-            alt="Horizon logo"
+            alt="PeepBank logo"
           />
           <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-            Horizon
+            PeepBank
           </h1>
         </Link>
 
